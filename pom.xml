@@ -39,16 +39,22 @@
     </distributionManagement>
 
     <properties>
-        <scala.version>2.9.1</scala.version>
+        <scala.version>2.9.0-1</scala.version>
         <encoding>UTF-8</encoding>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>${scala.version}</version>
-            <scope>compile</scope>
+          <groupId>org.scala-lang</groupId>
+          <artifactId>scala-library</artifactId>
+          <version>${scala.version}</version>
+          <scope>compile</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.scala-tools.testing</groupId>
+          <artifactId>specs_${scala.version}</artifactId>
+          <version>1.6.8</version>
+          <scope>test</scope>
         </dependency>
     </dependencies>
 
