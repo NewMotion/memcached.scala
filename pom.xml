@@ -22,7 +22,7 @@
     </organization>
 
     <scm>
-        <url>https://github.com/thenewmotion/scala-time</url>
+        <url>https://github.com/thenewmotion/memcached.scala</url>
         <connection>scm:git:ssh://git@github.com/thenewmotion/memcached.scala.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/thenewmotion/memcached.scala.git</developerConnection>
     </scm>
@@ -39,7 +39,7 @@
     </distributionManagement>
 
     <properties>
-        <scala.version>2.9.0-1</scala.version>
+        <scala.version>2.9.1</scala.version>
         <encoding>UTF-8</encoding>
     </properties>
 
@@ -53,7 +53,7 @@
         <dependency>
           <groupId>org.scala-tools.testing</groupId>
           <artifactId>specs_${scala.version}</artifactId>
-          <version>1.6.8</version>
+          <version>1.6.9</version>
           <scope>test</scope>
         </dependency>
     </dependencies>
@@ -63,6 +63,11 @@
             <id>ScalaToolsMaven2Repository</id>
             <name>Scala-Tools Maven2 Repository</name>
             <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+        <repository>
+            <id>scala-tools.snapshots</id>
+            <name>Scala-Tools Dependencies Repository for Snapshots</name>
+            <url>http://scala-tools.org/repo-snapshots</url>
         </repository>
     </repositories>
 
@@ -79,8 +84,20 @@
       <testSourceDirectory>src/test/scala</testSourceDirectory>
       <plugins>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.8</version>
+          <configuration>
+            <includes>
+              <include>**/*Spec.class</include>
+              <include>**/*Test.class</include>
+            </includes>
+          </configuration>
+        </plugin>
+        <plugin>
           <groupId>org.scala-tools</groupId>
           <artifactId>maven-scala-plugin</artifactId>
+          <version>2.15.2</version>
           <executions>
             <execution>
               <goals>
@@ -95,6 +112,9 @@
               <arg>-deprecation</arg>
               <arg>-explaintypes</arg>
             </args>
+            <jvmArgs>
+              <jvmArg>-Xmx512m</jvmArg>
+            </jvmArgs>
             <scalaVersion>${scala.version}</scalaVersion>
             <charset>${encoding}</charset>
           </configuration>
@@ -109,4 +129,4 @@
         </plugin>
       </plugins>
     </build>
-</project>
+  </project>
